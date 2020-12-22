@@ -23,6 +23,6 @@ export async function getCommit(cwd?: string): Promise<void> {
 
 export function copyTemplates(templates: string[], dest: string): void {
 	for (const t of templates) {
-		copy(resolve(rootdir, `templates/${t}/*`), dest);
+		copy(resolve(rootdir, `templates/${t}`), dest);
 	}
 }

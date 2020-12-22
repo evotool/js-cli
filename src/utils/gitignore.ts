@@ -1,3 +1,4 @@
+export const gitignore = `
 # compiled output
 dist/
 node_modules/
@@ -36,3 +37,4 @@ lerna-debug.log*
 # Environments
 production.env
 staging.env
+`;
