@@ -12,7 +12,7 @@ export function ResponseTimeMiddleware(req: IncomingMessage, res: ServerResponse
 	res.on('close', () => {
 		const diff = process.hrtime(req._startAt);
 		const time = (diff[0] * 1e3) + (diff[1] * 1e-6);
-		req._logger!.info(req.method, res.statusCode, req.url, `${time.toFixed(2)} ms`, getIpAddress(req), req.headers['user-agent']);
+		req._logger!.info(req.method, res.statusCode, req.url, `${time.toFixed(2)}ms`, getIpAddress(req), req.headers['user-agent']);
 	});
 
 	return false;
