@@ -1,13 +1,9 @@
-import { resolve } from 'path';
-
-import { copy } from '../../utils/fs';
-import { npmInstall, packages } from '../../utils/npm';
+import { copyTemplates } from '../../utils/helpers';
+import { dependencies, devDependencies, npmInstall } from '../../utils/npm';
 
 export default async (cwd: string): Promise<void> => {
-	await npmInstall(cwd, 'save', [...packages.http, ...packages.logger, ...packages.validator], true);
-	await npmInstall(cwd, 'save-dev', [...packages.eslint_plugin], true);
+	await npmInstall(cwd, 'save', [...dependencies.http, ...dependencies.logger, ...dependencies.validator], true);
+	await npmInstall(cwd, 'save-dev', [...devDependencies.eslint_plugin, ...devDependencies.http], true);
 
-	copy(resolve(rootdir, 'templates/eslint-plugin/*'), cwd);
-	copy(resolve(rootdir, 'templates/logger/*'), cwd);
-	copy(resolve(rootdir, 'templates/http/*'), cwd);
+	copyTemplates(['eslint-plugin', 'logger', 'http'], cwd);
 };

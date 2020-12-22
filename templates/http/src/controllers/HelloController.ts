@@ -1,4 +1,3 @@
-
 import { Controller, Endpoint, Req, Res } from '@evojs/http';
 import Logger from '@evojs/logger';
 

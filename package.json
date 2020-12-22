@@ -1,6 +1,6 @@
 {
 	"name": "@evojs/cli",
-	"version": "0.0.0-alpha1",
+	"version": "0.0.1",
 	"description": "Nodejs evojs cli",
 	"main": "bin/cli.js",
 	"license": "MIT",

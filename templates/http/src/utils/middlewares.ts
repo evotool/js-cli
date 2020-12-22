@@ -47,7 +47,7 @@ export function StaticMiddleware(req: IncomingMessage, res: ServerResponse): Pro
 				.on('error', (err) => {
 					req._logger!.error(err);
 					res.writeHead(500);
-					res.end(JSON.stringify({ status: 500, message: res.__!('Internal Server Error'), payload: { ...err } }));
+					res.end(JSON.stringify({ status: 500, message: 'Internal Server Error', payload: { ...err } }));
 					resolve(true);
 				})
 				.pipe(res);

@@ -1,13 +1,18 @@
-import { resolve } from 'path';
+import { writeFileSync } from 'fs';
+import { basename, resolve } from 'path';
 
-import { copy } from '../../utils/fs';
-import { npmInstall, packages } from '../../utils/npm';
+import { copyTemplates, getCommit } from '../../utils/helpers';
+import { dependencies, devDependencies, npmInstall } from '../../utils/npm';
+import { packageJson } from '../../utils/package-json';
 
 export default async (cwd: string): Promise<void> => {
-	await npmInstall(cwd, 'save', [...packages.http, ...packages.logger, ...packages.validator], true);
-	await npmInstall(cwd, 'save-dev', [...packages.eslint_plugin], true);
+	packageJson.name = basename(cwd);
+	writeFileSync(resolve(cwd, 'package.json'), JSON.stringify(packageJson, null, '\t'), 'utf-8');
 
-	copy(resolve(rootdir, 'templates/eslint-plugin/*'), cwd);
-	copy(resolve(rootdir, 'templates/logger/*'), cwd);
-	copy(resolve(rootdir, 'templates/http/*'), cwd);
+	await npmInstall(cwd, 'save', [...dependencies.http, ...dependencies.logger, ...dependencies.validator], true);
+	await npmInstall(cwd, 'save-dev', [...devDependencies.eslint_plugin, ...devDependencies.http], true);
+
+	copyTemplates(['eslint-plugin', 'logger', 'http'], cwd);
+
+	await getCommit(cwd);
 };

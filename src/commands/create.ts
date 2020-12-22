@@ -20,7 +20,7 @@ export async function create(cwd: string, projectName: string, module: string): 
 	projectName = kebabCase(projectName);
 	cwd = resolve(cwd, projectName);
 
-	if (glob.sync(`${cwd}/*`).length > 0) {
+	if (glob.sync(`${cwd}/*`, { dot: true }).length > 0) {
 		throw new Error('Directory is not empty');
 	} else {
 		if (!existsSync(cwd)) {
