@@ -16,7 +16,7 @@ export async function add(cwd: string, modules: string[]): Promise<void> {
 		let module: { default(cwd: string): Promise<void> };
 
 		try {
-			module = await import(`../modules/${m}/add`);
+			module = require(`../modules/${m}/add`);
 		} catch (err) {
 			throw new Error(`Unable to add to project the @evojs/${m} module`);
 		}

@@ -5,5 +5,5 @@ import { npmInstall, packages } from '../../utils/npm';
 
 export default async (cwd: string): Promise<void> => {
 	await npmInstall(cwd, 'save', [...packages.logger], true);
-	copy(resolve(__dirname, '../templates/logger/*'), cwd);
+	copy(resolve(rootdir, 'templates/logger/*'), cwd);
 };

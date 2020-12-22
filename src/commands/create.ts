@@ -12,7 +12,7 @@ export async function create(cwd: string, projectName: string, module: string): 
 	let m: { default(cwd: string): Promise<void> };
 
 	try {
-		m = await import(`../modules/${module}/create`);
+		m = require(`../modules/${module}/create`);
 	} catch (err) {
 		throw new Error(`Unable to create project with @evojs/${module} module`);
 	}
@@ -27,7 +27,7 @@ export async function create(cwd: string, projectName: string, module: string): 
 			mkdir(cwd);
 		}
 
-		await spawn('npm', ['init', '--yes']);
+		await spawn('npm', ['init', '--yes'], { cwd });
 	}
 
 	await m.default(cwd);

@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
 import * as commander from 'commander';
+import path = require('path');
 
 import { add } from '../commands/add';
 import { create } from '../commands/create';
+
+global.rootdir = path.resolve(__dirname, '..');
 
 const bootstrap = (program: commander.CommanderStatic): void => {
 	const cwd = process.cwd();
@@ -36,3 +39,8 @@ const bootstrap = (program: commander.CommanderStatic): void => {
 };
 
 bootstrap(commander);
+
+process.on('unhandledRejection', (reason) => {
+	console.error(reason);
+	process.exit(1);
+});

@@ -24,7 +24,7 @@ export async function npmInstall(cwd: string, mode: 'save' | 'save-dev', package
 
 	for (const p of packages) {
 		const packageName = p.replace(/^(.+?)(@.*?)?$/, '$1');
-		const packageJsonPath = resolve(`node_modules/${packageName}/package.json`);
+		const packageJsonPath = resolve(cwd, `node_modules/${packageName}/package.json`);
 		const packageJson = require(packageJsonPath) as { peerDependencies?: { [packageName: string]: string } };
 		const peerDependencies = Object.entries((packageJson.peerDependencies || {}) as { [packageName: string]: string })
 			.map(([packageName, packageVersion]) => `${packageName}@"${packageVersion}"`);
