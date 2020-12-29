@@ -5,13 +5,13 @@ import { debug } from './helpers';
 
 export const dependencies = {
 	http: [
-		'@evojs/http@^0.2.1',
+		'@evojs/http@^0.2.2',
 		'@evojs/http-client@latest',
 		'dotenv@latest',
 		'mime@latest',
 	],
-	validator: ['@evojs/validator@^0.1.0'],
-	logger: ['@evojs/logger@^0.0.4'],
+	validator: ['@evojs/validator@^0.1.1'],
+	logger: ['@evojs/logger@^0.1.0'],
 	http_client: ['@evojs/http-client@latest'],
 };
 
